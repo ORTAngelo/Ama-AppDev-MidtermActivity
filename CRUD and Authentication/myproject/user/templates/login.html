@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+    {% block title %}
+      Login
+    {% endblock %}
+  
+    {% block content %}
+    <div class="wrapper">
+      <h1>Login</h1>
+      <form action="" method="post">
+        {% csrf_token %}
+        <!-- Username input -->
+
+        <input
+          class="input-box"
+          type="text"
+          placeholder="Username"
+          name="username"
+          required
+        />
+
+        <!-- Password input -->
+        <input
+          class="input-box"
+          type="password"
+          placeholder="Password"
+          name="password"
+          required
+        />
+
+        <!-- Submit button -->
+        <button type="submit" class="btn">Login</button>
+
+        <!-- Register Link -->
+        <div class="register-link">
+          <p>
+            Don't have an account? <a href="{% url 'register' %}">Register</a>
+          </p>
+        </div>
+      </form>
+    </div>
+    {% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'homebase.html' %}
+
+    {% block title %}
+      Add Product
+    {% endblock %}
+
+{% block content %}
+<div class="AddProduct_box">
+    
+<h1>Add Record</h1>
+<br/>
+
+<form method="POST" action="{% url 'addProduct' %}">
+	{% csrf_token %}
+
+	{{ form.as_p }}
+
+<br/>
+  <button type="submit" class="btn btn-primary">Add Record</button>
+   <a href="{% url 'product' %}" >Back</a>
+
+</form>
+
+</div>
+
+{% endblock %}

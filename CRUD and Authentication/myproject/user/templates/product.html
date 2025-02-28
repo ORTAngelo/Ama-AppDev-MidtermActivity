@@ -1,0 +1,56 @@
+{% extends "homebase.html" %}
+
+    {% block title %}
+      Product
+    {% endblock %}
+
+{% block content %}
+
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<h1>Product List</h1>
+
+{% if products %}
+    <table>
+        <thead>
+            <tr>
+                <th>Item Code</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>option</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.serial_number }}</td>
+                    <td>{{ product.product_name }}</td>
+                    <td>${{ product.price }}</td>
+                    <td><button type="button" onclick="window.location.href='{% url 'updateProduct' pk=product.pk %}'">Update</button> 
+                    <button type="button" onclick="window.location.href='{% url 'confirmDelete' pk=product.pk%}'">Delete</button></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">No products available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No products found.</p>
+{% endif %}
+
+</br>
+<!--
+<a href="{% url 'addProduct' %}" >Add Product</a>
+-->
+<button type="button" onclick="window.location.href='{% url 'addProduct' %}'">Add Product</button>
+
+
+{% endblock %}
